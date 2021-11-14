@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.text :body
       t.string :genre
       t.integer :price, null: false
-      t.image :text
+      t.text :image
       t.status :string, null: false
 
       t.timestamps
