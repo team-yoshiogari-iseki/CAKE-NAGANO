@@ -31,13 +31,13 @@ class DeviseCreatePublics < ActiveRecord::Migration[5.0]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      
+
       t.string :last_name, null: false
       t.string :first_name, null: false
       t.string :last_name_read
       t.string :first_name_read
       t.integer :postal_code
-      t.string :adress
+      t.string :address
       t.integer :telephone_number
       t.boolean :user_status, null: false
 
