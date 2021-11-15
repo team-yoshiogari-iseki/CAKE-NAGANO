@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211114021214) do
+ActiveRecord::Schema.define(version: 20211115045549) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "public_id"
+    t.string   "name"
+    t.string   "address"
+    t.integer  "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -24,6 +33,54 @@ ActiveRecord::Schema.define(version: 20211114021214) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer  "item_id",    null: false
+    t.integer  "_id",        null: false
+    t.integer  "quantity",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.text     "body",       null: false
+    t.integer  "genre_id"
+    t.integer  "price",      null: false
+    t.text     "image",      null: false
+    t.boolean  "status",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "item_id"
+    t.integer  "price"
+    t.integer  "quantity"
+    t.integer  "making_status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "public_id"
+    t.integer  "postal_code",              null: false
+    t.string   "address",                  null: false
+    t.string   "orderer_name",             null: false
+    t.integer  "payment_way",  default: 0, null: false
+    t.integer  "order_status", default: 0, null: false
+    t.integer  "postage",                  null: false
+    t.integer  "claimed",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "publics", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -32,11 +89,11 @@ ActiveRecord::Schema.define(version: 20211114021214) do
     t.datetime "remember_created_at"
     t.string   "last_name",                           null: false
     t.string   "first_name",                          null: false
-    t.string   "last_name_read"
-    t.string   "first_name_read"
-    t.integer  "postal_code"
-    t.string   "adress"
-    t.integer  "telephone_number"
+    t.string   "last_name_read",                      null: false
+    t.string   "first_name_read",                     null: false
+    t.integer  "postal_code",                         null: false
+    t.string   "address",                             null: false
+    t.integer  "telephone_number",                    null: false
     t.boolean  "user_status",                         null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false

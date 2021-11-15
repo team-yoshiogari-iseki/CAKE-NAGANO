@@ -34,11 +34,11 @@ class DeviseCreatePublics < ActiveRecord::Migration[5.0]
 
       t.string :last_name, null: false
       t.string :first_name, null: false
-      t.string :last_name_read
-      t.string :first_name_read
-      t.integer :postal_code
-      t.string :address
-      t.integer :telephone_number
+      t.string :last_name_read, null: false
+      t.string :first_name_read, null: false
+      t.integer :postal_code, null: false
+      t.string :address, null: false
+      t.integer :telephone_number, null: false
       t.boolean :user_status, null: false
 
       t.timestamps null: false
