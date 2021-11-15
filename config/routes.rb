@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'home/about' => 'homes#about'
 
-  devise_for :publics,skip: [:passwords], controllers: {
+  devise_for :public,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :items, except: [:destroy]
-    resources :users, except: [:new, :create, :destroy]
+    resources :publics, except: [:new, :create, :destroy]
     resources :orders, only: [:index, :show, :update]
   end
 
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :orders, except: [:edit, :update, :destroy]
     get 'orders/check' => 'orders#check'
     get 'orders/success' => 'orders/success'
-    resources :users, only: [:show, :edit, :update]
+    resources :publics, only: [:show, :edit, :update]
     get 'users/erasure' => 'users#erasure'
     delete 'users/:id' => 'users#leave'
   end
