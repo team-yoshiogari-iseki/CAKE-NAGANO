@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
   end
 
-  namespace :public do
     resources :address, except: [:new, :show]
     resources :carts, except: [:new, :show, :edit]
     resources :items, only: [:index, :show]
@@ -29,6 +28,5 @@ Rails.application.routes.draw do
     resources :publics, only: [:show, :edit, :update]
     get 'users/erasure' => 'users#erasure'
     delete 'users/:id' => 'users#leave'
-  end
 
   end
