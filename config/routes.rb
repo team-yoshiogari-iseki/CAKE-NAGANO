@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
 
   devise_for :customer,skip: [:passwords], controllers: {
-    registrations: "customer/registrations",
-    sessions: 'customer/sessions'
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
   }
 
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     resources :customers, except: [:new, :create, :destroy]
     resources :orders, only: [:index, :show, :update]
   end
-
+  
+  scope module: :public do
     resources :addresses, except: [:new, :show]
     resources :cart_items, except: [:new, :show, :edit]
     resources :items, only: [:index, :show]
@@ -27,5 +28,6 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     get 'customers/erasure' => 'customers#erasure'
     delete 'customers/:id' => 'customers#leave'
+  end
 
   end
