@@ -18,9 +18,14 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
+    @cart_item = Cart_item(params[:id])
+    @cart_item.destoy
+    redirect_to cart_items_path, notice: "商品が削除されました"
   end
 
   def destroy_all
+    current_customer.cart_items.destoy_all
+    redirect_to items_path
   end
 
   private
