@@ -6,6 +6,8 @@
   
   <div class = "row justify-content-center">
     <%= form_with model:@item, url:admin_items_path, local:true do |f| %>
+    
+    <%= render 'admin/shared/error_messages',resource: @item %>
 
       <div class="form-group form-inline ">
         <label class="col-md-3">商品画像</label>
