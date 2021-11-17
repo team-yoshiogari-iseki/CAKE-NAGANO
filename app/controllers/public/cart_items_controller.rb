@@ -1,14 +1,16 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    @cart_items = Cart_items.all
+    @cart_items = current_customer.cart_items.all
   end
 
   def create
-    @item = @cart_item
     @cart_item = Cart_item.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
     if @cart_item.save
-      redirect_to item_path(@item.id), notice: "カートに商品が追加されました"
+      redirect_to cart_items_path, notice: "カートに商品が追加されました"
+    else
+
     end
   end
 
@@ -16,6 +18,9 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def destroy_all
   end
 
   private
