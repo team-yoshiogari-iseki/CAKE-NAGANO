@@ -1,0 +1,37 @@
+<div class = "container">
+
+  <div class = "row m-5">
+    <h2 class = "admin-customers-index">会員一覧</h2>
+  </div>
+
+  <div class = "row">
+    <div class = "col">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+         </tr>
+        </thead>
+      <% @orders.each do |order| %>>
+        <tbody>
+          <tr>
+            <td><%= order.created_at %></td>
+            <%= link_to admin_customer_path(customer.id) do %>
+              <td>order.customer.last_name order.customer.first_name </td>
+            <% end %>
+            <td> order.order_details.quantity </td>
+            <td> order.making_states</td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <div class = "justify-content-center">
+        <%= paginate @orders %>
+      </div>
+    </div>
+  </div>
+  
+</div>
