@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :addresses, except: [:new, :show]
-    resources :cart_items, except: [:new, :show, :edit]
+    resources :cart_items, except: [:new, :show, :edit] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     resources :items, only: [:index, :show]
     resources :orders, except: [:edit, :update, :destroy]
     get 'orders/check' => 'orders#check'
