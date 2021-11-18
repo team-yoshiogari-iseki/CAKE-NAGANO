@@ -7,14 +7,25 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = Cart_item.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    if @cart_item.save
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).blank?
+      cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      cart_item.quantity += params[:cart_item][:quantity].to_i
+      cart_item.save
       redirect_to cart_items_path, notice: "カートに商品が追加されました"
     else
-
+      render 'public/items/show'
     end
   end
 
   def update
+    @cart_item = Cart_item.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+      @cart_item.save
+      redirect_to cart_items_path, notice: "カートに新たな商品が追加されました"
+    else
+      render 'public/items/show'
+    end
   end
 
   def destroy
@@ -31,7 +42,7 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.permit(:item_id, :quantity)
+    params.require(:cart_item).permit(:item_id, :quantity)
   end
 
 end
