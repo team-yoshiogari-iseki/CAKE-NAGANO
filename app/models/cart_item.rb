@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
 
-  belongs_to :customer, dependent: :destroy
+  belongs_to :customer
   has_many :items
 
   def with_tax_price
