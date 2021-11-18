@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
   
+  belongs_to :cart_item
+  belongs_to :genre
+  has_many :order_details
+  
   attachment :image, destroy: false
   
   validates :name, presence: true
