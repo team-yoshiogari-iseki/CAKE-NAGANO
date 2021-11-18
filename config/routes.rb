@@ -33,5 +33,4 @@ Rails.application.routes.draw do
     get 'customers/erasure' => 'customers#erasure'
     delete 'customers/:id' => 'customers#leave'
   end
-
-  end
+end
