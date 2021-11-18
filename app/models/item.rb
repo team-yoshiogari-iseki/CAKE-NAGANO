@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   
-  belongs_to :cart_item
   belongs_to :genre
   has_many :order_details
+  has_many :cart_items
   
   attachment :image, destroy: false
   
@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :body, presence: true
   validates :price, presence: true
   validates :image, presence: true
-  validates :is_status, presence: true
+  validate :is_status
   
   def with_tax_price
     (price * 1.1).floor
