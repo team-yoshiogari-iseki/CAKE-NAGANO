@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+
   
   def show
     @customer = Customer.find(params[:id])
@@ -29,4 +30,5 @@ class Public::CustomersController < ApplicationController
   
   
   
+
 end

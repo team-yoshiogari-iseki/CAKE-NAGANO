@@ -28,5 +28,5 @@ Rails.application.routes.draw do
     member do get :erasure
     end end
     delete 'customers/:id' => 'customers#leave'
-   end
   end
+end
