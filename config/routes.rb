@@ -15,8 +15,9 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     resources :customers, except: [:new, :create, :destroy]
     resources :orders, only: [:show, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
-    
+
    scope module: :public do
     root to: 'homes#top'
     resources :addresses, except: [:new, :show]
