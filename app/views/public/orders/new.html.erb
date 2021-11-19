@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <h5>注文情報入力</h5>
+    <div class="col-md-10">
+      <h6><strong>支払方法</strong></h6>
+      <%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
+        <div class="form-check">
+          <%= f.radio_button :payment_way, :card, checked: "checked" %>
+          <%= f.label :payment_way, "クレジットカード", {value: :card, style: "display: inline-block;"} %>
+        </div>
+        <div class="form-check">
+          <%= f.radio_button :payment_way, :transfer %>
+          <%= f.label :payment_way, "銀行振込", {value: :transfer, style: "display: inline-block;"} %>
+        </div>
+        <h6><strong>お届け先</strong></h6>
+        <div class="form-check">
+          <%= f.radio_button :address_option, 0, checked: "checked" %>
+          <%= f.label :order_address, "ご自身の住所", style: "display: inline-block;" %>
+          <%= @current_customer.postal_code %>
+          <%= @current_customer.address %>
+          <%= @current_customer.last_name %>
+          <%= @current_customer.first_name %>
+        </div>
+        <div class="form-check">
+          <%= f.radio_button :address_option, 1 %>
+          <%= f.label :order_address, "登録済み住所から選択", style: "display: inline-block;" %>
+            <div class="form-group">
+              <%= f.collection_select :order_address, @addresses, :id, (:postal_code :address :name) %>
+            </div>
+        </div>
+        <div class="form-check">
+          <%= f.radio_button :address_option, 2 %>
+          <%= f.label :order_address, "新しいお届け先" style: "display: inline-block;"} %>
+            <div class="form-group custom-control-inline">
+              <%= f.label :郵便番号(ハイフンなし) %>
+              <%= f.text_field :postal_code, class: 'form-control' %>
+            </div>
+            <div class="form-group custom-control-inline">
+              <%= f.label :住所 %>
+              <%= f.text_field :order_address, class: 'form-control' %>
+            </div>
+            <div class="form-group custom-control-inline">
+              <%= f.label :氏名 %>
+              <%= f.text_field :orderer_name, class: 'form-control' %>
+            </div>
+        </div>
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
