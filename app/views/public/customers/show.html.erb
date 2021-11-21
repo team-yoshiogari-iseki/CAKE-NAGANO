@@ -1,22 +1,24 @@
 <div class="container">
   <div class="mt-5">
-      <div>
-      <h3 class="offset-2 col-md-3 text-center d-inline" style="background-color:rgba(107,90,105,0.1);">マイページ</h3>
-      </div>
-      <div class="mt-4 mb-4 btn-group align-items-center">
-      <h4 class="font-weight-bold pt-2">登録情報</h4>
-      <%= link_to '編集する',edit_customer_path ,class: "btn btn-success ml-5 rounded" %>
-      </div>
+    <p class="text-success"><%= flash[:notice]%></p>
+        <div>
+        <h3 class="offset-2 col-md-3 text-center d-inline" style="background-color:rgba(107,90,105,0.1);">マイページ</h3>
+        </div>
+      
+        <div class="mt-4 mb-4 btn-group align-items-center">
+        <h4 class="font-weight-bold pt-2 ">登録情報</h4>
+        <%= link_to '編集する',edit_customer_path ,class: "btn btn-success ml-5 rounded pl-4 pr-4" %>
+        </div>
       
       <div class="col-md-7 px-0">
         <table class="table table-bordered  " border="1">
-          <tr class="border"> 
+          <tr class="border">
             <td class="col-2 border-dark" style="background-color:rgba(107,90,105,0.1);">氏名</td>
-            <td class="col-5 border-dark"><%= @customer.last_name %><%= @customer.first_name  %></td>
-          </tr>
+            <td class="col-5 border-dark"><%= @customer.last_name%>&nbsp;&nbsp;&nbsp;&nbsp;<%= @customer.first_name %></td>
+          </tr>  
           <tr>
             <td class="col-2 border-dark" style="background-color:rgba(107,90,105,0.1);">カナ</td>
-            <td class="col-5 border-dark"><%= @customer.last_name_read %><%= @customer.first_name_read  %></td>
+            <td class="col-5 border-dark"><%= @customer.last_name_read %>&nbsp;&nbsp;&nbsp;<%= @customer.first_name_read  %></td>
           </tr>
           <tr>
             <td class="col-2 border-dark" style="background-color:rgba(107,90,105,0.1);">郵便番号</td>
@@ -37,15 +39,19 @@
           </table>
       </div>
       
-      <div class="mt-4 mb-3 btn-group align-items-center px-0">
-        <h4 class="font-weight-bold pt-2">配送先</h4>
-        <%= link_to '一覧を見る',edit_customer_path ,class: "btn btn-primary ml-5 ml-5 rounded" %>
-      </div>
+        <div class="mt-5">
+        <div class="btn-group">
+          <h4 class="font-weight-bold mr-4 mt-2">配送先</h4>
+          <%= link_to '一覧を見る',address_path ,class: "btn btn-primary rounded ml-5 pl-4 pr-4 text-center d-flex align-items-center" %>
+        </div>
+        </div>
       
-      <div class="row ml-1 px-0">
-        <h4 class="font-weight-bold pt-2">注文履歴</h4>
-        <%= link_to '一覧を見る',edit_customer_path ,class: "btn btn-primary ml-5 rounded" %>
-      </div>
-       
-  </div>    
+        <div class="mt-4">
+        <div class="btn-group">
+          <h4 class="font-weight-bold mt-2">注文履歴</h4>
+          <%= link_to '一覧を見る',order_path ,class: "btn btn-primary rounded ml-5 pl-4 pr-4 text-center d-flex align-items-center" %>
+        </div>
+        </div>
+      
+  </div>
 </div>
