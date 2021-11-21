@@ -1,10 +1,10 @@
 <div class = "container">
 
-  <div class = "row m-5">
-    <h2 class = "admin-items-show">商品一覧</h2>
+  <div class = "row mt-5">
+    <h3 class = "admin-items-show" style="background-color:rgba(107,90,105,0.1);">商品一覧</h3>
   </div>
 
-  <div class = "row">
+  <div class = "row mt-5">
     <div class = "col-md-4">
       <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
     </div>
@@ -23,7 +23,7 @@
 
         <tr>
           <th>ジャンル</th>
-          <td>@item.genre</td>
+          <td><%= @item.genre.name %></td>
         </tr>
 
         <tr>
