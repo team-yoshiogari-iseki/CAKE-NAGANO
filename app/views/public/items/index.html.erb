@@ -1,5 +1,5 @@
 <div class="container-fluid mt-5 mx-5">
-  <div class="row">
+  <div class="row mx-auto">
 
     <%= render 'genre_search', genres: @genres%>
 
@@ -13,12 +13,13 @@
             <% end %>
             <div class="card-body">
               <p class="card-title">
-                <%= @items.name %></br>
-                <%= @items.price %>
+                <%= items.name %></br>
+                <%= items.price %>
               </p>
             </div>
           </div>
           <% end %>
+          <%= paginate @items %>
           <div class="card w-30 mx-4 mt-4 border-0">
             <%= image_tag '130_ll.jpg', class: "img-fluid card-img-top" %>
             <div class="card-body">
