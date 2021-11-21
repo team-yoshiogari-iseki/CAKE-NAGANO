@@ -1,10 +1,10 @@
 <div class = "container">
 
-  <div class = "row m-5">
-    <h2 class = "admin-items-new">商品編集</h2>
+  <div class = "row mt-5">
+    <h3 class = "admin-items-new" style="background-color:rgba(107,90,105,0.1);">商品編集</h3>
   </div>
   
-  <div class = "row justify-content-center">
+  <div class = "row justify-content-center mt-5">
     <%= form_with model:@item, url:admin_item_path, local:true do |f| %>
     
     <%= render 'admin/shared/error_messages',resource: @item %>
@@ -33,7 +33,7 @@
       <div class="form-group form-inline">
         <label class="col-md-3">ジャンル</label>
         <div class="col-md-9">
-           f.text_field :genre, class:"form-control" 
+           <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name),class:"form-control" %>
         </div>
       </div>
 
