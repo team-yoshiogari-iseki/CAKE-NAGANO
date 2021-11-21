@@ -1,61 +1,64 @@
 <div class = "container">
 
-  <div class = "row m-5">
-    <h2 class = "admin-customers-show"><%= @customerlast_name %>会員の会員詳細</h2>
+  <div class = "row mt-5">
+    <h3 class = "admin-customers-show" style="background-color:rgba(107,90,105,0.1);"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h3>
   </div>
 
-  <div class = "row"> 
+  <div class = "row mt-5"> 
     <div class = "col">
-      <table class = "table">
+      <table class = "table table-borderless">
         <tr>
-          <th>会員Id</th>
-          <td><%= @customer.id %></td>
+          <th class = "col-md-3">会員Id</th>
+          <td class = "col-md-9"><%= @customer.id %></td>
         </tr>
 
         <tr>
-          <th>氏名</th>
-          <td><%= @customerlast_name %><%= @customerfirst_name %></td>
+          <th class = "col-md-3">氏名</th>
+          <td class = "col-md-9"><%= @customer.last_name %><%= @customer.first_name %></td>
         </tr>
 
         <tr>
-          <th>フリガナ</th>
-          <td><%= @customer.last_name_read %><%= @customer.first_name_read %></td>
+          <th class = "col-md-3">フリガナ</th>
+          <td class = "col-md-9"><%= @customer.last_name_read %><%= @customer.first_name_read %></td>
         </tr>
 
         <tr>
-          <th>郵便番号</th>
-          <td><%= @customer.postal_code %></td>
+          <th class = "col-md-3">郵便番号</th>
+          <td class = "col-md-9"><%= @customer.postal_code %></td>
         </tr>
 
         <tr>
-          <th>住所</th>
-          <td><%= @customer.adress %></td>
+          <th class = "col-md-3">住所</th>
+          <td class = "col-md-9"><%= @customer.address %></td>
         </tr>
 
         <tr>
-          <th>電話番号</th>
-          <td><%= @customer.telephone_number %></td>
+          <th class = "col-md-3">電話番号</th>
+          <td class = "col-md-9"><%= @customer.telephone_number %></td>
         </tr>
 
         <tr>
-          <th>メールアドレス</th>
-          <td><%= @customer.email %></td>
+          <th class = "col-md-3">メールアドレス</th>
+          <td class = "col-md-9"><%= @customer.email %></td>
         </tr>
 
         <tr>
-          <th>会員ステータス</th>
-          <td> @customer.user_states</td>
+          <th class = "col-md-3">会員ステータス</th>
+          <td class = "col-md-9"><%= @customer.is_user_status ? '退会' : '有効'%></td>
         </tr>
       </table>
     </div>
   </div>
-    
-  <div class = "row">
-    <div class = "btn btn-success">
-      <%= link_to "編集する",edit_admin_customer_path %>
-    </div>
-    <div class = "btn btn-primary">
-      <%= link_to "注文履歴一覧を見る",admin_orders_path %>
+  
+  <div class = "row">  
+    <div class = "col-md-3"></div>
+    <div class = "col-md-9">
+      <div class = "btn btn-success mr-5">
+        <%= link_to "編集する",edit_admin_customer_path, class:"text-white" %>
+      </div>
+      <div class = "btn btn-primary">
+        <%= link_to "注文履歴一覧を見る",admin_root_path, class:"text-white" %>
+      </div>
     </div>
   </div>
   

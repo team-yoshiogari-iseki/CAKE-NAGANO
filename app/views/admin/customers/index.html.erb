@@ -1,29 +1,31 @@
 <div class = "container">
 
-  <div class = "row m-5">
-    <h2 class = "admin-customers-index">会員一覧</h2>
+  <div class = "row mt-5">
+    <h3 class = "admin-customers-index" style="background-color:rgba(107,90,105,0.1);">会員一覧</h3>
   </div>
 
   <div class = "row">
-    <div class = "col">
-      <table class = "table">
+    <div class = "col-md-8 mx-auto">
+      <table class = "table mt-5">
         <thead>
-          <tr>
+          <tr style="background-color:rgba(107,90,105,0.1);">
             <th>会員ID</th>
             <th>氏名</th>
             <th>メールアドレス</th>
             <th>ステータス</th>
          </tr>
         </thead>
-      <% @customers.each do |customer| %>>
+      <% @customers.each do |customer| %>
         <tbody>
           <tr>
             <td><%= customer.id %></td>
-            <%= link_to admin_customer_path(customer.id) do %>
-              <td><%= customer.last_name %><%= customer.first_name %></td>
-            <% end %>
+            <td>
+              <%= link_to admin_customer_path(customer.id), class:"text-dark border-bottom" do %>
+                <%= customer.last_name %><%= customer.first_name %>
+              <% end %>
+            </td>
             <td><%= customer.email %></td>
-            <td> customer.is_states</td>
+            <td><%= customer.is_user_status ? '退会' : '有効'  %></td>
           </tr>
         </tbody>
         <% end %>
