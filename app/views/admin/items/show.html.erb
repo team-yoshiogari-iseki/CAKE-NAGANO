@@ -1,0 +1,46 @@
+<div class = "container">
+
+  <div class = "row m-5">
+    <h2 class = "admin-items-show">商品一覧</h2>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-4">
+      <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
+    </div>
+
+    <div class = "col-md-8">
+      <table class = "table">
+        <tr>
+          <th>商品名</th>
+          <td><%= @item.name %></td>
+        </tr>
+
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.body %></td>
+        </tr>
+
+        <tr>
+          <th>ジャンル</th>
+          <td>@item.genre</td>
+        </tr>
+
+        <tr>
+          <th>
+            税込価格</br>(税抜価格)
+          </th>
+          <td>
+            <%= @item.with_tax_price %>(<%= @item.price %>)円
+          </td>
+        </tr>
+
+        <tr>
+          <th>販売ステータス</th>
+          <td><%= @item.is_status ? '販売中' : '販売停止中'  %></td>
+        </tr>
+      </table>
+      <%= link_to "編集する",edit_admin_item_path(@item.id), class:"btn btn-success" %>
+    </div>
+  </div>
+</div>

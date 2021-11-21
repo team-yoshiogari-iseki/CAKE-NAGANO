@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'public/homes#top'
-  get '/about' => 'public/homes#about'
+
+
+
+
 
   devise_for :customer,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -13,20 +15,29 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root to: 'homes#top'
     resources :items, except: [:destroy]
     resources :customers, except: [:new, :create, :destroy]
-    resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:show, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 
-  scope module: :public do
+   scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
     resources :addresses, except: [:new, :show]
-    resources :cart_items, except: [:new, :show, :edit]
+    resources :cart_items, except: [:new, :show, :edit] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     resources :items, only: [:index, :show]
     resources :orders, except: [:edit, :update, :destroy]
     get 'orders/check' => 'orders#check'
     get 'orders/success' => 'orders/success'
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/erasure' => 'customers#erasure'
+    resources :customers, only: [:show, :edit,:update] do
+    member do get :erasure
+    end end
     delete 'customers/:id' => 'customers#leave'
   end
 end
