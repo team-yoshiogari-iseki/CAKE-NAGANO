@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <h5>注文情報入力</h5>
     <div class="col-md-10">
+      <h5>注文情報入力</h5>
       <h6><strong>支払方法</strong></h6>
       <%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
         <div class="form-check">
@@ -15,34 +15,42 @@
         <h6><strong>お届け先</strong></h6>
         <div class="form-check">
           <%= f.radio_button :address_option, 0, checked: "checked" %>
-          <%= f.label :order_address, "ご自身の住所", style: "display: inline-block;" %>
-          <%= @current_customer.postal_code %>
-          <%= @current_customer.address %>
-          <%= @current_customer.last_name %>
-          <%= @current_customer.first_name %>
+          <%= f.label :address_option_0, "ご自身の住所" %></br>
+          <label class="address_option_0 ml-4">
+          〒<%= current_customer.postal_code %>
+          <%= current_customer.address %></br>
+          <%= current_customer.last_name %>
+          <%= current_customer.first_name %>
+          </label>
         </div>
         <div class="form-check">
           <%= f.radio_button :address_option, 1 %>
-          <%= f.label :order_address, "登録済み住所から選択", style: "display: inline-block;" %>
-            <div class="form-group">
-              <%= f.collection_select :order_address, @addresses, :id, (:postal_code :address :name) %>
+          <%= f.label :address_option_1, "登録済み住所から選択" %>
+            <div class="form-group ml-4">
+              <%= f.collection_select :registered, current_customer.addresses.all, :id, :address %>
             </div>
         </div>
         <div class="form-check">
           <%= f.radio_button :address_option, 2 %>
-          <%= f.label :order_address, "新しいお届け先" style: "display: inline-block;"} %>
-            <div class="form-group custom-control-inline">
-              <%= f.label :郵便番号(ハイフンなし) %>
+          <%= f.label :address_option_2, "新しいお届け先" %>
+          <div class="form-inline">
+            <div class="form-group ml-4">
+              <%= f.label :郵便番号（ハイフンなし） %>
               <%= f.text_field :postal_code, class: 'form-control' %>
             </div>
-            <div class="form-group custom-control-inline">
+          </div>
+          <div class="form-inline">
+            <div class="form-group ml-4 mt-3">
               <%= f.label :住所 %>
-              <%= f.text_field :order_address, class: 'form-control' %>
+              <%= f.text_field :address, class: 'ml-5 form-control' %>
             </div>
-            <div class="form-group custom-control-inline">
+          </div>
+          <div class="form-inline">
+            <div class="form-group ml-4 mt-3">
               <%= f.label :氏名 %>
-              <%= f.text_field :orderer_name, class: 'form-control' %>
+              <%= f.text_field :name, class: 'ml-5 form-control' %>
             </div>
+          </div>
         </div>
         <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
       <% end %>
