@@ -1,10 +1,8 @@
   ja:
     enums:
-      order_detail:
+      order_details:
         making_status:
           not_startable: "着手不可"
           waiting_for_production: "制作待ち"
           production: "制作中"
           production_completed: "制作完了"
-          
-          2.6.3 :001 > OrderDetail.making_status_i18n[:not_startable]

@@ -9,14 +9,16 @@
    </tr>
   </thead>
 <% order_details.each do |order_detail| %>
+  <%= form_with nodel:order_details, url:admin_order_detail_path, local:true do |f| %>
   <tbody>
     <tr>
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.price %></td>
       <td><%= order_details.quantity %></td>
-      <td><%= f.select :making_status, options_from_collection_for_select(OrderDetail.all, :id, :full_address) %></td>
+      <td><%= f.select :making_status, OrderDetail.making_statuses,keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}) %></td>
       <td></td>
     </tr>
   </tbody>
   <% end %>
+<% end %>
 </table>
