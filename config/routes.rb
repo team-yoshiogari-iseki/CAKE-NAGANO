@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+
+
+
+
   devise_for :customer,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
 
    scope module: :public do
     root to: 'homes#top'
+    get '/about' => 'homes#about'
     resources :addresses, except: [:new, :show]
     resources :cart_items, except: [:new, :show, :edit] do
       collection do
