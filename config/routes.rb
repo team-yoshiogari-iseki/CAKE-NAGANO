@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:index, :show]
     resources :orders, except: [:edit, :update, :destroy]
-    get 'orders/check' => 'orders#check'
+    post 'orders/check' => 'orders#check'
     get 'orders/success' => 'orders/success'
     resources :customers, only: [:show, :edit,:update] do
     member do get :erasure

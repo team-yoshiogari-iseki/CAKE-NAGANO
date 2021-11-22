@@ -6,7 +6,7 @@ class Public::OrdersController < ApplicationController
 
   def check
     @order = Order.new(order_params)
-    @cart_items = current_customer.CartItem.all
+    @cart_items = current_customer.cart_items.all
     @order.payment_way = params[:order][:payment_way]
     @order.postage = 800
     @order.claimed = @total += @order.postage
@@ -24,7 +24,7 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
-      @order.name = params[:order][:orname]
+      @order.name = params[:order][:orderer_name]
     end
   end
 
@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :address)
+    params.require(:order).permit(:orderer_name, :postal_code, :address)
   end
 
   def address_params
