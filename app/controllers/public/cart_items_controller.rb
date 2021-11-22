@@ -1,41 +1,46 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    @cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.CartItem.all
+    #@cart_items = CartItem.all 動作確認用
+
   end
 
   def create
-    @cart_item = Cart_item.new(cart_item_params)
+    @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).blank?
+
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
       cart_item.quantity += params[:cart_item][:quantity].to_i
       cart_item.save
       redirect_to cart_items_path, notice: "カートに商品が追加されました"
+
+    elsif
+      @cart_item.save
+      redirect_to cart_items_path, notice: "カートに新たな商品が追加されました"
+
     else
       render 'public/items/show'
     end
   end
 
   def update
-    @cart_item = Cart_item.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
-    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-      @cart_item.save
-      redirect_to cart_items_path, notice: "カートに新たな商品が追加されました"
-    else
-      render 'public/items/show'
-    end
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
+    redirect_to cart_items_path, notice: "商品の数量が変更されました"
   end
 
   def destroy
-    @cart_item = Cart_item(params[:id])
-    @cart_item.destoy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
     redirect_to cart_items_path, notice: "商品が削除されました"
   end
 
   def destroy_all
-    current_customer.cart_items.destoy_all
+    current_customer.CartItem.destoy_all
+    #cart_items = CartItem.all 動作確認用
+    #cart_items.destroy_all 動作確認用
     redirect_to items_path
   end
 
