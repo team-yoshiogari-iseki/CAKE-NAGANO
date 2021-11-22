@@ -21,11 +21,10 @@
       <% if @item.is_status == true %>
         <%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
-        <%= hidden_field :customer_id, :value => current_customer.id %>
         <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'}, required:true %>&emsp;
         <%= f.submit 'カートに入れる', class: 'btn btn-success btn-sm' %>
-      <% else %>
-      <h3>売り切れ中</h3>
-      <% end %>    
+    
+      <% end %>   
+      <% end %> 
   </div>
 </div>
