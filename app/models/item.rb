@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   validates :body, presence: true
   validates :price, presence: true
   validates :image, presence: true
+
   validates :is_status, presence: true
 
   def with_tax_price
