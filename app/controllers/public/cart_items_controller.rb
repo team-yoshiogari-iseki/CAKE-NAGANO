@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    @cart_items = current_customer.CartItem.all
+    @cart_items = current_customer.cart_items.all
     #@cart_items = CartItem.all 動作確認用
 
   end
