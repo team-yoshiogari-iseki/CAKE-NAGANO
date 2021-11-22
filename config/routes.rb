@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :customers, except: [:new, :create, :destroy]
     resources :orders, only: [:show, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :order_details, only: [:update]
   end
 
    scope module: :public do
