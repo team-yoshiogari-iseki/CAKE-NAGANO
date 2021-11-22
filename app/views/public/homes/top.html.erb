@@ -1,35 +1,46 @@
 <div class="container mt-5 mx-5">
   <div class="row">
-    
-    <%= render 'genre_search', genres: @genres %>
-    
-    <div class="col-1"></div>
-    <div class="col-8">
-      <div class="card mx-auto w-75 p-75" style="">
-        <%= image_tag 'baked-goods2.jpg', class: "img-fluid" %>
-        <div class="card-img-overlay">
-          <p class="text-dark"><strong>ようこそ、ながのCAKEへ！</strong></p>
-          <p class="text-dark">
-          このサイトはケーキ販売の</br>
-          ECサイトになります。</br>
-          会員でない方も</br>
-          商品の閲覧はできますが、</br>
-          購入には会員登録が</br>
-          必要になります。
-          </p>
+
+    <%= render 'layouts/genre_search', genres: @genres %>
+
+      <div class="col-1"></div>
+      <div class="col-8">
+        <div class="card mx-auto w-75 p-75" style="">
+          <%= image_tag 'baked-goods2.jpg', class: "img-fluid" %>
+          <div class="card-img-overlay">
+            <p class="text-dark"><strong>ようこそ、ながのCAKEへ！</strong></p>
+            <p class="text-dark">
+              このサイトはケーキ販売の</br>
+              ECサイトになります。</br>
+              会員でない方も</br>
+              商品の閲覧はできますが、</br>
+              購入には会員登録が</br>
+              必要になります。
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 <div class="container mt-5 mx-5">
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8">
-      <% @items.each do |item| %>
-      <%= item.name %></br>
-      <%= iem.price %>
-      <% end %>
+      <div class="d-flex align-content-between flex-wrap">
+        <% @items.each do |item| %>
+          <div class="card w-20 mx-4 mt-4 border-0">
+            <%= link_to item_path(item.id) do %>
+              <%= attachment_image_tag item, :image, size: "170x150", class:"card-img-top"; %>
+            <% end %>
+            <div class="card-body">
+              <p class="card-title">
+                <%= item.name %></br>
+                ¥<%= item.with_tax_price.to_s(:delimited) %>
+              <span class="small">(税込)</span>
+              </p>
+            </div>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

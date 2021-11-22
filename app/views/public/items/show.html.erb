@@ -1,30 +1,35 @@
 <div class="container-fluid mt-5 mx-5">
   <div class="row">
     
-    <div class="col-xs-4 col-xs-offset-2">
-      <%= attachment_image_tag(@item, :image, size: "340x220", fallback: "no_image1.png" ) %>
+    <div class="card col-md-4 col-md-offset-1">
+      <%= attachment_image_tag(@item, :image, size: "170x150", fallback: "no_image1.png" ) %>
     </div>
 
-    <div class="col-xs-6">
-     <p class="lead font-weight-bolder">
-          <h2><%= @item.name %></h2>
-          </p>
-        <div class="field">
-          <p class="font-weight-bold"><%= @item.body %></p>
-        </div>
-        <div class="field">
-          <h3>¥ <%= @item.with_tax_price.to_s(:delimited) %>
-              <span class="tax">(税込)</span>
-          </h3>
-        </div>
+    <div class="col-md-6 col-md-offset-1">
+      <p class="lead font-weight-bolder">
+        <h2><%= @item.name %></h2>
+      </p>
+      <div class="field">
+        <p class="font-weight-bold"><%= @item.body %></p>
       </div>
-      <% if @item.is_status == true %>
-        <%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'}, required:true %>&emsp;
-        <%= f.submit 'カートに入れる', class: 'btn btn-success btn-sm' %>
-    
-      <% end %>   
-      <% end %> 
+      <div class="field">
+        <h3>¥ <%= @item.with_tax_price.to_s(:delimited) %>
+          <span class="small">(税込)</span>
+        </h3>
+      </div>
+      <div class="field pt-5">
+      <% if customer_signed_in? %>  
+        <% if @item.is_status == true %>
+          <%= form_with model:@cart_item, url:cart_items_path, method: :post, local:true do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'}, required:true %>&emsp;
+            <%= f.submit 'カートに入れる', class: 'btn btn-success btn-sm' %>
+          <% end %>
+        <% else %>
+          <h3>売り切れ中</h3>
+        <% end %>
+      <% end %>  
+    </div>
+    </div>
   </div>
 </div>
