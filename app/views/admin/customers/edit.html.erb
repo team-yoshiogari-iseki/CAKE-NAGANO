@@ -1,7 +1,7 @@
 <div class = "container">
 
   <div class = "row m-5">
-    <h2 class = "admin-customers-edit">@user.nameさんの会員情報編集</h2>
+    <h3 class = "admin-customers-edit" style="background-color:rgba(107,90,105,0.1);"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
   </div>
 
   <div class = "row justify-content-center">
@@ -12,7 +12,7 @@
       <div class="form-group form-inline ">
         <label class="col-md-3">会員ID</label>
         <div class="col-md-9 ">
-          <%= f.text_field :id, class:"form-control" %>
+          <%= @customer.id %>
         </div>
       </div>
 
@@ -60,8 +60,15 @@
 
       <div class="form-group form-inline ">
         <label class="col-md-3">会員ステータス</label>
-        <div class="col-md-9 ">
-           f.text_field :user_states, class:"form-control" 
+        <div class="col-md-9 d-flex">
+          <div class = "form-check form-check-inline">
+            <%= f.radio_button :is_user_status, 'false' %>
+            <%= f.label :is_user_status, '有効', value: false %>
+          </div>
+          <div class = "form-check form-check-inline">
+            <%= f.radio_button :is_user_status, 'true' %>
+            <%= f.label :is_user_status, '退会', value: true %>
+          </div>
         </div>
       </div>
 
