@@ -35,7 +35,7 @@
         </tr>
         <tr>
           <th>請求合計</th>
-          <td><%= @order.claimed %></td>
+          <td><%= @order.claimed.to_s %></td>
         </tr>
       </table>
     </div>
@@ -47,15 +47,16 @@
           <span>クレジットカード</span>
         <% else %>
           <span>銀行振込</span>
+        <% end %>
       </div>
       <div class="col-md-10 mt-4">
         <h6><strong>お届け先</strong></h6>
         <span>
           〒<%= @order.postal_code %><%= @order.address %></br>
-          <%= @order.name %>
+          <%= @order.orderer_name %>
         </span>
       </div>
-    <%= form_with model: :order, url: orders_path, local: true do |f| %>
+    <%= form_with model: @order, url: orders_path, local: true do |f| %>
       <%= f.hidden_field :postal_code %>
       <%= f.hidden_field :address %>
       <%= f.hidden_field :orderer_name %>
@@ -63,5 +64,6 @@
       <%= f.hidden_field :postage %>
       <%= f.hidden_field :claimed %>
     <%= f.submit "注文を確定する", class: 'btn btn-success mt-4 mx-auto' %>
+    <% end %>
   </div>
 </div>
