@@ -1,23 +1,25 @@
 <div class = "container">
 
-  <div class = "row m-5">
-    <h2 class = "admin-orders-show">注文詳細</h2>
+  <div class = "row mt-5">
+    <h3 class = "admin-orders-show" style="background-color:rgba(107,90,105,0.1);">注文詳細</h3>
   </div>
 
   <div class = "row"> 
     <div class = "col">
-      <%= form_with @order, local:true do |f| %>
-      <table class = "table">
+      
+      <table class = "table table-borderless">
         <tr>
           <th>購入者</th>
-          <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+          <td>
+            <%= link_to admin_customer_path(@order.customer_id), class:"text-dark border-bottom" do %>
+              <%= @order.customer.last_name %><%= @order.customer.first_name %>
+            <% end %>
+          </td>
         </tr>
-
         <tr>
           <th>注文日</th>
-          <td><%= @order.created_at %></td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
-
         <tr>
           <th>配送先</th>
           <td>
@@ -25,42 +27,44 @@
             <%= @order.orderer_name %>
           </td>
         </tr>
-
         <tr>
           <th>支払い方法</th>
-          <td><%= @order.payment_way %></td>
+          <td><%= @order.payment_way_i18n %></td>
         </tr>
-        
         <tr>
           <th>注文ステータス</th>
-          <td><%= f.select :order_status, Order.order_statuses,keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}) %></td>
+          <td>
+            <%= form_with model:@order,url:admin_order_path(@order), local:true do |f| %>
+              <%= f.select :order_status, options_for_select(Order.order_statuses_i18n.invert, selected: f.object.order_status) %>
+              <%= f.submit "更新", class: "btn btn-success"%>
+            <% end %>
+          </td>
         </tr>
-
       </table>
-      <% end %>
+      
     </div>
   </div>
     
   <div class = "row">
     <div class = "col-md-8">
-      <%= render 'show/show', order_details: @order_details  %>
+      <%= render 'admin/orders/show', order_details: @order_details %>
     </div>
-    <div class = "col-md-4">
+    <h4 class = "col-md-3 offset-md-1 mt-5">
+      <table class = "table table-borderless">
       <tr>
         <th>商品合計</th>
-        <td></td>
+        <td><%= @total %></td>
       </tr>
-      
       <tr>
         <th>送料</th>
         <td><%= @order.postage %></td>
       </tr>
-      
       <tr>
         <th>請求金額</th>
         <td><%= @order.claimed %></td>
       </tr>
-    </div>
+      </table>
+    </h4>
   </div>
   
 </div>
