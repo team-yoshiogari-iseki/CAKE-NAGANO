@@ -10,7 +10,7 @@ class OrderDetail < ApplicationRecord
   end
 
   def subtotal
-    price * quantity
+    with_tax_price* quantity
   end
 
   #def @order.claimed
