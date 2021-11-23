@@ -35,7 +35,7 @@
         </tr>
         <tr>
           <th>請求合計</th>
-          <td><%= @order.claimed.to_s %></td>
+          <td><%= @order.postage.to_i + @total %></td>
         </tr>
       </table>
     </div>
@@ -62,7 +62,7 @@
       <%= f.hidden_field :orderer_name %>
       <%= f.hidden_field :payment_way %>
       <%= f.hidden_field :postage %>
-      <%= f.hidden_field :claimed %>
+      <%= f.hidden_field :claimed, :value => [@order.postage.to_i + @total] %>
     <%= f.submit "注文を確定する", class: 'btn btn-success mt-4 mx-auto' %>
     <% end %>
   </div>

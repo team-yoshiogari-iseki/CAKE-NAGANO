@@ -1,20 +1,24 @@
 <div class = "container">
 
   <div class = "row mt-5">
-    <h2 class = "admin-orders-show" style="background-color:rgba(107,90,105,0.1);">注文詳細</h2>
+    <h3 class = "admin-orders-show" style="background-color:rgba(107,90,105,0.1);">注文詳細</h3>
   </div>
 
   <div class = "row"> 
     <div class = "col">
       
-      <table class = "table">
+      <table class = "table table-borderless">
         <tr>
           <th>購入者</th>
-          <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+          <td>
+            <%= link_to admin_customer_path(@order.customer_id), class:"text-dark border-bottom" do %>
+              <%= @order.customer.last_name %><%= @order.customer.first_name %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>注文日</th>
-          <td><%= @order.created_at %></td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
           <th>配送先</th>
@@ -27,15 +31,15 @@
           <th>支払い方法</th>
           <td><%= @order.payment_way_i18n %></td>
         </tr>
-        <%= form_with model:@order,url:admin_order_path(@order), local:true do |f| %>
         <tr>
           <th>注文ステータス</th>
           <td>
-            <%= f.select :order_status, options_for_select(Order.order_statuses_i18n.invert, selected: f.object.order_status) %>
-            <%= f.submit "更新", class: "btn btn-success"%>
+            <%= form_with model:@order,url:admin_order_path(@order), local:true do |f| %>
+              <%= f.select :order_status, options_for_select(Order.order_statuses_i18n.invert, selected: f.object.order_status) %>
+              <%= f.submit "更新", class: "btn btn-success"%>
+            <% end %>
           </td>
         </tr>
-        <% end %>
       </table>
       
     </div>
@@ -45,11 +49,11 @@
     <div class = "col-md-8">
       <%= render 'admin/orders/show', order_details: @order_details %>
     </div>
-    <div class = "col-md-4">
-      <table>
+    <h4 class = "col-md-3 offset-md-1 mt-5">
+      <table class = "table table-borderless">
       <tr>
         <th>商品合計</th>
-        <td><%= @order_details.sum(:price) %></td>
+        <td><%= @total %></td>
       </tr>
       <tr>
         <th>送料</th>
@@ -60,7 +64,7 @@
         <td><%= @order.claimed %></td>
       </tr>
       </table>
-    </div>
+    </h4>
   </div>
   
 </div>

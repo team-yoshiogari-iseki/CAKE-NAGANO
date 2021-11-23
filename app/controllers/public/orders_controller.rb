@@ -9,7 +9,6 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @order.payment_way = params[:order][:payment_way]
     @order.postage = 800
-    @order.claimed = @total.to_i + @order.postage.to_i
 
     if params[:order][:address_option] == "0"
       @order.postal_code = current_customer.postal_code
@@ -47,11 +46,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.Order.all
+    @orders = current_customer.orders.all
   end
 
   def show
-    @order_detail = OrderDetail.find(params[:id])
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
