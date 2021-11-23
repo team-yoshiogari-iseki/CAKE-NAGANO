@@ -1,72 +1,26 @@
-<div class="container-fluid mt-5 mx-5">
-  <div class="row mx-auto">
+<div class="container mt-3 mx-5">
+  <div class="row">
 
-    <%= render 'genre_search', genres: @genres%>
+    <%= render 'layouts/genre_search', genres: @genres%>
 
-      <div class="col-md-8 offset-md-1">
-        <h2>商品一覧</h2>
-        <div class="d-flex align-content-between flex-wrap">
-          <%= @items.each do |item| %>
-          <div class="card w-30 mx-4 mt-4 border-0">
-            <%= link_to item_path(item.id) do %>
-              <%= attachment_image_tag item, :image, size: "170x100", class:"card-img-top"; %>
-            <% end %>
-            <div class="card-body">
-              <p class="card-title">
-                <%= items.name %></br>
-                <%= items.price %>
-              </p>
-            </div>
-          </div>
+    <div class="col-md-9 offset-1 mt-2">
+      <h2>商品一覧<small class="text-muted">（全<%= @items.count %>件）</small></h2>
+      <div class="d-flex align-content-between flex-wrap">
+
+       <% @items.each do |item| %>
+        <div class="col-md-3 mt-3">
+          <%= link_to item_path(item.id) do %>
+            <%= attachment_image_tag item, :image, size: "160x120", class:"card-img-top"; %>
           <% end %>
-          <%= paginate @items %>
-          <div class="card w-30 mx-4 mt-4 border-0">
-            <%= image_tag 'CAKE.jpg', class: "img-fluid card-img-top" %>
-            <div class="card-body">
-              <p class="card-title">
-               ケーキ</br>
-               ¥2,700
-              </p>
-            </div>
-          </div>
-          <div class="card w-30 mx-4 mt-4 border-0">
-            <%= image_tag 'CAKE.jpg', class: "img-fluid card-img-top" %>
-            <div class="card-body">
-              <p class="card-title">
-               ケーキ</br>
-               ¥2,700
-              </p>
-            </div>
-          </div>
-          <div class="card w-30 mx-4 mt-4 border-0">
-            <%= image_tag 'CAKE.jpg', class: "img-fluid card-img-top" %>
-            <div class="card-body">
-              <p class="card-title">
-               ケーキ</br>
-               ¥2,700
-              </p>
-            </div>
-          </div>
-           <div class="card w-30 mx-4 mt-4 border-0">
-            <%= image_tag 'CAKE.jpg', class: "img-fluid card-img-top" %>
-            <div class="card-body">
-              <p class="card-title">
-               ケーキ</br>
-               ¥2,700
-              </p>
-            </div>
-          </div>
-          <div class="card w-30 mx-4 mt-4 border-0">
-            <%= image_tag 'CAKE.jpg', class: "img-fluid card-img-top" %>
-            <div class="card-body">
-              <p class="card-title">
-               ケーキ</br>
-               ¥2,700
-              </p>
-            </div>
-          </div>
-
+          <p class="card-title mx-auto pt-2">
+              <%= item.name %></br>
+              ¥<%= item.with_tax_price.to_s(:delimited) %>
+            <span class="small">(税込)</span>
+            </p>
         </div>
+        <% end %>
       </div>
+    </div>
   </div>
+
 </div>

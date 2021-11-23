@@ -1,5 +1,6 @@
 <div class="container">
   <div class="mt-5">
+
     <p class="text-success"><%= flash[:notice]%></p>
         <div>
         <h3 class="offset-2 col-md-3 text-center d-inline" style="background-color:rgba(107,90,105,0.1);">マイページ</h3>
@@ -12,6 +13,7 @@
       
       <div class="col-md-7 px-0">
         <table class="table table-bordered  "border="1">
+
           <tr class="border">
             <td class="col-2 border-dark" style="background-color:rgba(107,90,105,0.1);">氏名</td>
             <td class="col-5 border-dark"><%= @customer.last_name%>&nbsp;&nbsp;&nbsp;&nbsp;<%= @customer.first_name %></td>
@@ -38,7 +40,7 @@
           </tr>
           </table>
       </div>
-      
+
         <div class="mt-5">
         <div class="btn-group">
           <h4 class="font-weight-bold mr-4 mt-2">配送先</h4>
@@ -52,6 +54,6 @@
           <%= link_to '一覧を見る',orders_path ,class: "btn btn-primary rounded ml-5 pl-4 pr-4 text-center d-flex align-items-center" %>
         </div>
         </div>
-      
+
   </div>
 </div>
