@@ -1,7 +1,7 @@
 <div class = "container">
 
-  <div class = "row m-5">
-    <h2 class = "admin-customers-index">会員一覧</h2>
+  <div class = "row mt-5">
+    <h2 class = "admin-customers-index">注文履歴一覧</h2>
   </div>
 
   <div class = "row">
@@ -20,10 +20,10 @@
           <tr>
             <td><%= order.created_at %></td>
             <%= link_to admin_order_path(order.id) do %>
-              <td>order.customer.last_name order.customer.first_name </td>
+              <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
             <% end %>
-            <td> order.order_details.quantity </td>
-            <td> order.making_states</td>
+            <td><%= @total_quantity.round.to_s(:delimited) %></td>
+            <td><%= order.order_states_i18n %></td>
           </tr>
         </tbody>
         <% end %>
