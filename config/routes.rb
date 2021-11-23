@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     post 'orders/check' => 'orders#check'
     get 'orders/success' => 'orders/success'
+    resources :orders, except: [:edit, :update, :destroy]
     patch 'customers/'=> 'customers#update'
     resources :customers, only: [] do
     collection do
@@ -38,9 +39,9 @@ Rails.application.routes.draw do
       get :edit
       patch :leave
       get :erasure
-    end 
     end
-   
+    end
+
    end
 
 end
