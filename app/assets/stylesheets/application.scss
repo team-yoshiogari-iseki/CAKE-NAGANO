@@ -17,6 +17,29 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+<
+.field_with_errors {
+  display: contents;
+}
+
+.fa, .fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  line-height: normal;
+}
+
+#notice {
+  color: green;
+}
+
+#error_explanation {
+  color: red;
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
 
 .btn-light{
   border-color: #d3d3d3;

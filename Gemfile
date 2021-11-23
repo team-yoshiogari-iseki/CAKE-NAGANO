@@ -60,4 +60,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem "enum_help"
+
+gem 'devise-i18n-views'
 gem 'rails-i18n', '~> 5.1'
+
