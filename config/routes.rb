@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :customers,skip: [:passwords], controllers: {
+  devise_for :customer,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, except: [:destroy]
     resources :customers, except: [:new, :create, :destroy]
-    resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:show, :update]
   end
     
    scope module: :public do
@@ -24,12 +24,13 @@ Rails.application.routes.draw do
     resources :orders, except: [:edit, :update, :destroy]
     get 'orders/check' => 'orders#check'
     get 'orders/success' => 'orders/success'
-    resources :customers, only: [:show, :edit,:update] do
-    member do 
-      get :erasure
-    end 
+    patch 'customers/'=> 'customers#update'
+    resources :customers, only: [] do
     collection do
+      get :show
+      get :edit
       patch :leave
+      get :erasure
     end 
     end
    
