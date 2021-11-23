@@ -17,7 +17,7 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-<
+
 .field_with_errors {
   display: contents;
 }
@@ -40,6 +40,7 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+}
 
 .btn-light{
   border-color: #d3d3d3;

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
       root_path
     when Admin
       admin_root_path
+    end
   end
 
   private
