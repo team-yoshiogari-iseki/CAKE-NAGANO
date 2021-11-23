@@ -38,6 +38,7 @@ class Public::OrdersController < ApplicationController
       order_detail.price = cart_item.item.price
       order_detail.quantity = cart_item.quantity
       order_detail.save
+      current_customer.cart_items.destroy_all
     end
     redirect_to orders_success_path, notice: "注文を受け付けました"
   end
