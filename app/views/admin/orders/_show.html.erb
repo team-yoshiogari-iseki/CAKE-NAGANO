@@ -1,6 +1,6 @@
 <table class = "table">
   <thead>
-    <tr>
+    <tr style="background-color:rgba(107,90,105,0.1);">
       <th>商品名</th>
       <th>単価（税込）</th>
       <th>数量</th>
@@ -9,16 +9,19 @@
    </tr>
   </thead>
 <% order_details.each do |order_detail| %>
-  <%= form_with nodel:order_details, url:admin_order_detail_path, local:true do |f| %>
   <tbody>
     <tr>
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.price %></td>
-      <td><%= order_details.quantity %></td>
-      <td><%= f.select :making_status, OrderDetail.making_statuses,keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}) %></td>
-      <td></td>
+      <td><%= order_detail.quantity %></td>
+      <td><%= order_detail.price %></td>
+      <%= form_with model:order_detail,url:admin_order_detail_path(order_detail), local:true do |f| %>
+      <td>
+        <%= f.select :making_status, options_for_select(OrderDetail.making_statuses_i18n.invert, selected: f.object.making_status) %>
+        <%= f.submit "更新", class: "btn btn-success"%>
+      </td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>
-<% end %>
 </table>
