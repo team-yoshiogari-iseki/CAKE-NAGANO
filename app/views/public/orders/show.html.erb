@@ -59,7 +59,7 @@
         <th>小計</th>
       </tr>
       <% @order_detail.items.each do |order_detail| %>
-      <tr>
+      <tr>,
         <td><%= order_detail.item.name %></td>
         <td><%= order_detail.price %></td>
         <td><%= order_detail.quantity %></td>

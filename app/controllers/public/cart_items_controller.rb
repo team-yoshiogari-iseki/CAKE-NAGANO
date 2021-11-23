@@ -1,9 +1,7 @@
 class Public::CartItemsController < ApplicationController
 
   def index
-    @cart_items = current_customer.CartItem.all
-    #@cart_items = CartItem.all 動作確認用
-
+    @cart_items = current_customer.cart_items.all
   end
 
   def create
@@ -38,9 +36,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    current_customer.CartItem.destoy_all
-    #cart_items = CartItem.all 動作確認用
-    #cart_items.destroy_all 動作確認用
+    @cart_items = current_customer.cart_items.all
+    @cart_items.destroy_all
     redirect_to items_path
   end
 

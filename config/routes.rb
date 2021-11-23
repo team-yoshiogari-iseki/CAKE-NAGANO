@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
-
   devise_for :customer,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -34,7 +30,7 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:index, :show]
     resources :orders, except: [:edit, :update, :destroy]
-    get 'orders/check' => 'orders#check'
+    post 'orders/check' => 'orders#check'
     get 'orders/success' => 'orders/success'
     resources :customers, only: [:show, :edit,:update] do
     member do get :erasure
