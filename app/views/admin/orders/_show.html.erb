@@ -15,12 +15,12 @@
       <td><%= order_detail.price %></td>
       <td><%= order_detail.quantity %></td>
       <td><%= order_detail.price %></td>
-      <%= form_with model:order_detail,url:admin_order_detail_path(order_detail), local:true do |f| %>
       <td>
-        <%= f.select :making_status, options_for_select(OrderDetail.making_statuses_i18n.invert, selected: f.object.making_status) %>
-        <%= f.submit "更新", class: "btn btn-success"%>
+        <%= form_with model:order_detail,url:admin_order_detail_path(order_detail), local:true do |f| %>
+          <%= f.select :making_status, options_for_select(OrderDetail.making_statuses_i18n.invert, selected: f.object.making_status) %>
+          <%= f.submit "更新", class: "btn btn-success"%>
+        <% end %>
       </td>
-      <% end %>
     </tr>
   </tbody>
   <% end %>
