@@ -13,9 +13,13 @@ class Customer < ApplicationRecord
   validates :address, presence:{ message: "は１文字以上入力してください。" }
   
   
+  
   has_many :addresses, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
-
+  
+  def active_for_authentication?
+    super && (self.is_user_status == false)
+  end
 
 end
