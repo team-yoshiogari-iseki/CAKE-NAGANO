@@ -29,7 +29,11 @@ class Public::OrdersController < ApplicationController
       @order.orderer_name = params[:order][:orderer_name]
     end
     session[:order] = @order
-    redirect_to orders_check_view_path
+    if @order.postal_code.blank? && @order.address.blank? && @order.orderer_name.blank?
+      redirect_to new_order_path, alert: "お届け先情報を入力してください"
+    else
+      redirect_to orders_check_view_path
+    end
   end
 
   def check_view
@@ -41,16 +45,16 @@ class Public::OrdersController < ApplicationController
     cart_items = current_customer.cart_items.all
     @orders = current_customer.orders.new(order_params)
     @orders.save
-    cart_items.each do |cart_item|
-      order_detail = OrderDetail.new
-      order_detail.order_id = @orders.id
-      order_detail.item_id = cart_item.item_id
-      order_detail.price = cart_item.item.with_tax_price
-      order_detail.quantity = cart_item.quantity
-      order_detail.save
-      current_customer.cart_items.destroy_all
-    end
-    redirect_to orders_success_path, notice: "注文を受け付けました"
+      cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.order_id = @orders.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.price = cart_item.item.with_tax_price
+        order_detail.quantity = cart_item.quantity
+        order_detail.save
+        current_customer.cart_items.destroy_all
+      end
+      redirect_to orders_success_path, notice: "注文を受け付けました"
   end
 
   def success
@@ -69,7 +73,7 @@ class Public::OrdersController < ApplicationController
 
   def cart_item
     if current_customer.cart_items.blank?
-      redirect_to cart_items_path, notice: "カートに商品が入っていません"
+      redirect_to cart_items_path, alert: "カートに商品が入っていません"
     end
   end
 
