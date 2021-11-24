@@ -29,7 +29,7 @@ class Public::OrdersController < ApplicationController
       @order.orderer_name = params[:order][:orderer_name]
     end
     session[:order] = @order
-    if @order.postal_code.blank? && @order.address.blank? && @order.orderer_name.blank?
+    if @order.postal_code.blank? || @order.address.blank? || @order.orderer_name.blank?
       redirect_to new_order_path, alert: "お届け先情報を入力してください"
     else
       redirect_to orders_check_view_path
