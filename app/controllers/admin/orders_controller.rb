@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   
   def show
     @order = Order.find(params[:id])
@@ -8,6 +9,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    flash[:notice] = "変更を保存しました"
     redirect_to request.referer
   end
   
