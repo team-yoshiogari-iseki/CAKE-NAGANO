@@ -65,10 +65,9 @@
   <div class="row pb-2">
     <div class="col-md-10">
       <%= search_form_for @search do |f| %>
-    <%= f.submit "★", class: "btn btn-primary btn-sm float-right" %>
- <%= f.text_field :name_cont, class: "form-control form-control-sm col-md-2 float-right", placeholder: "Search" %>
-<% end %>
-    
+        <%= f.submit "★", class: "btn btn-info btn-sm float-right" %>
+        <%= f.text_field :name_cont, class: "form-control form-control-sm col-md-2 float-right", placeholder: "Search" %>
+      <% end %>
     </div>
   </div>
 </header>
