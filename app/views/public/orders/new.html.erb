@@ -5,12 +5,12 @@
       <h6><strong>支払方法</strong></h6>
       <%= form_with model: @order, url: orders_check_path, method: :post, local: true do |f| %>
         <div class="form-check">
-          <%= f.radio_button :payment_way, :card, checked: "checked" %>
-          <%= f.label :payment_way, "クレジットカード", {value: :card, style: "display: inline-block;"} %>
+          <%= f.radio_button :payment_way, :クレジットカード, checked: "checked" %>
+          <%= f.label :payment_way, "クレジットカード", {value: :クレジットカード, style: "display: inline-block;"} %>
         </div>
         <div class="form-check">
-          <%= f.radio_button :payment_way, :transfer %>
-          <%= f.label :payment_way, "銀行振込", {value: :transfer, style: "display: inline-block;"} %>
+          <%= f.radio_button :payment_way, :銀行振込 %>
+          <%= f.label :payment_way, "銀行振込", {value: :銀行振込, style: "display: inline-block;"} %>
         </div>
         <h6><strong>お届け先</strong></h6>
         <div class="form-check">
