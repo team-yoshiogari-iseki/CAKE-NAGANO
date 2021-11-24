@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  
+  before_action :cart_item
   before_action :authenticate_customer!
 
   def new
@@ -57,6 +59,12 @@ class Public::OrdersController < ApplicationController
   end
 
   private
+
+  def cart_item
+    if current_customer.cart_items.blank?
+      redirect_to cart_items_path, notice: "カートに商品が入っていません"
+    end
+  end
 
   def order_params
     params.require(:order).permit(:orderer_name, :postal_code, :address, :postage, :claimed)

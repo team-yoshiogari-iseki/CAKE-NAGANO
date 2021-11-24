@@ -16,7 +16,10 @@
         <tbody>
           <% @total = 0 %>
           <% @cart_items.each do |cart_item| %>
-            <td class="p-2"><%= cart_item.item.name %></td>
+            <td class="p-2">
+              <%= attachment_image_tag cart_item.item, :image, size: "80x60", fallback: "no_image1.png" %>
+              <%= cart_item.item.name %>
+            </td>
             <td class="p-2"><%= cart_item.with_tax_price %></td>
             <td class="p-2"><%= cart_item.quantity %></td>
             <td class="p-2"><%= cart_item.subtotal %></td>
