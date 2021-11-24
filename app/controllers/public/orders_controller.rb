@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
-  
-  before_action :cart_item
+
+  before_action :cart_item, except: [:success, :show, :index]
   before_action :authenticate_customer!
 
   def new
@@ -38,7 +38,7 @@ class Public::OrdersController < ApplicationController
       order_detail = OrderDetail.new
       order_detail.order_id = @orders.id
       order_detail.item_id = cart_item.item_id
-      order_detail.price = cart_item.item.price
+      order_detail.price = cart_item.item.with_tax_price
       order_detail.quantity = cart_item.quantity
       order_detail.save
       current_customer.cart_items.destroy_all
