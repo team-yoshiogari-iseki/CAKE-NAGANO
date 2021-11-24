@@ -4,6 +4,7 @@ class Admin::OrderDetailsController < ApplicationController
   def update
     @order_detail = OrderDetail.find(params[:id])
     @order_detail.update(order_detail_params)
+    flash[:notice] = "変更を保存しました"
     redirect_to request.referer
   end 
   
