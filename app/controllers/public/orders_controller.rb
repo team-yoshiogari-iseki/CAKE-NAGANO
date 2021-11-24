@@ -28,6 +28,13 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.orderer_name = params[:order][:orderer_name]
     end
+    session[:order] = @order
+    redirect_to orders_check_view_path
+  end
+
+  def check_view
+    @cart_items = current_customer.cart_items.all
+    @order = Order.new(session[:order])
   end
 
   def create
