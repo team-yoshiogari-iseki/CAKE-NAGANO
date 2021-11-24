@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :image, presence: true
 
-  validates :is_status, presence: true
+  validates :is_status, inclusion: { in: [true, false] }
 
   def with_tax_price
     (price * 1.08).floor
