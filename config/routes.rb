@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:index, :show]
     post 'orders/check' => 'orders#check'
+    get 'orders/check_view' => 'orders#check_view'
     get 'orders/success' => 'orders/success'
     resources :orders, except: [:edit, :update, :destroy]
     patch 'customers/'=> 'customers#update'
