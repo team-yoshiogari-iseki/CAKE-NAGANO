@@ -47,11 +47,8 @@
   </div>
     <div class="form-inline">
       <h6 class="pt-2 mr-4"><strong>支払方法</strong></h6>
-        <% if @order.payment_way == 0 %>
-          <span>クレジットカード</span>
-        <% else %>
-          <span>銀行振込</span>
-        <% end %>
+        <%= @order.payment_way %>
+
     </div>
     <div class="form-inline mt-2">
       <h6 class="mr-4"><strong>お届け先</strong></h6>

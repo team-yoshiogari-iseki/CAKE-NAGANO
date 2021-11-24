@@ -28,7 +28,7 @@
           <%= f.radio_button :address_option, 1 %>
           <%= f.label :address_option_1, "登録済み住所から選択" %>
             <div class="form-group ml-4">
-              <%= f.collection_select :registered, current_customer.addresses.all, :id, :address %>
+              <%= f.collection_select :registered, current_customer.addresses.all, :id, :full_address %>
             </div>
         </div>
         <div class="form-check">
