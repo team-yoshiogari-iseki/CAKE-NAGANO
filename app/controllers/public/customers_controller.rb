@@ -25,7 +25,9 @@ class Public::CustomersController < ApplicationController
 
   def leave
     @customer = Customer.find(current_customer.id)
-    @customer.update(is_user_status: true)
+    if @customer.update(is_user_status: true)
+      sign_out current_customer
+    end
     redirect_to root_path
   end
 
