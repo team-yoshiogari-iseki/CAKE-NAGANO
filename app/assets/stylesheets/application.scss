@@ -17,6 +17,28 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+* {
+  box-sizing: border-box;
+}
+ 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem; 
+}
+ 
+footer {
+  margin-top: auto;
+  padding: 30px 0;
+  color: #fff;
+  text-align: center;
+}
 
 .field_with_errors {
   display: contents;

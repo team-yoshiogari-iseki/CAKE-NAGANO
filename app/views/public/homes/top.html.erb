@@ -1,23 +1,18 @@
+ <div class="jumbotron jumbotron-fluid text-white" style="background: url(<%= asset_path "fruit_m.jpg" %>);">
+    <div class="container text-secondary">
+      <h1>ようこそ、ながのCAKEへ！</h1>
+      <p>このサイトはケーキ販売のECサイトになります。</br>
+      会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。
+              </p>
+    </div>
+  </div>
 <div class="container mt-3 mx-5">
   <div class="row">
 
     <%= render 'layouts/genre_search', genres: @genres %>
 
       <div class="col-md-9 offset-1">
-        <div class="card w-75 p-75" style="">
-          <%= image_tag 'fruit1.jpg', class: "img-fluid" %>
-          <div class="card-img-overlay">
-            <p class="text-dark"><strong>ようこそ、ながのCAKEへ！</strong></p>
-            <p class="text-dark">
-              このサイトはケーキ販売の</br>
-              ECサイトになります。</br>
-              会員でない方も</br>
-              商品の閲覧はできますが、</br>
-              購入には会員登録が</br>
-              必要になります。
-            </p>
-          </div>
-        </div>
+
         <h2 class="mt-2">新着商品</h2>
         <div class="d-flex align-content-between flex-wrap">
           <% @items.each do |item| %>
@@ -33,7 +28,7 @@
             </div>
           <% end %>
             <div class="col-md-12 text-right">
-              <%= link_to "全ての商品を見る＞", items_path %> 
+              <%= link_to "全ての商品を見る＞", items_path %>
             </div>
         </div>
       </div>
