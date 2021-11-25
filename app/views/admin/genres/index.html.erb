@@ -1,8 +1,9 @@
 <div class="container">
 
-  <div class="row-md-12 mt-5">
+  <div class="row mt-5">
       <p class="text-success"><%= flash[:notice]%></p>
-      <h2>ジャンル一覧・追加</h2>
+      <h3 class = "admin-customers-index" style="background-color:rgba(107,90,105,0.1);">ジャンル一覧・追加</h3>
+    </div>  
     <div class = "row m-5">
       <%= form_with model:@genre, url:admin_genres_path,local:true do |f| %>
       <div class="form-group form-inline">
@@ -12,11 +13,11 @@
       </div>
       <% end %>
     </div>
-  </div>
+
   <div class="container">
       <div class="row-md-5 mt-5">
         <div class="col-4">
-        <table class="table table-hover table-inverse">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>ジャンル</th>
