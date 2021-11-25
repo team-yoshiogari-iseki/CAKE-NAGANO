@@ -12,13 +12,17 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  
+
+  def after_sign_out_path_for(resource)
+    new_admin_session_path
+  end
+
   
   def set_search
     @search = Item.ransack(params[:q])
     @search_items = @search.result
   end
-
+  
   private
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_read, :first_name_read, :postal_code,:address, :telephone_number])
