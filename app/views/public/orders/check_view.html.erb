@@ -7,15 +7,16 @@
       <table border=1 >
         <thead>
           <tr class="active" style="background-color:rgba(213,219,219,0.50);">
-            <th class="col-md-4 p-2">商品名</th>
+            <th class="col-md-5 p-2">商品名</th>
             <th class="col-md-2 p-2">単価(税込)</th>
-            <th class="col-md-2 p-2">数量</th>
+            <th class="col-md-1 p-2">数量</th>
             <th class="col-md-2 p-2">小計</th>
           </tr>
         </thead>
         <tbody>
           <% @total = 0 %>
           <% @cart_items.each do |cart_item| %>
+          <tr>
             <td class="p-2">
               <%= attachment_image_tag cart_item.item, :image, size: "80x60", fallback: "no_image1.png" %>
               <%= cart_item.item.name %>
@@ -23,6 +24,7 @@
             <td class="p-2"><%= cart_item.with_tax_price %></td>
             <td class="p-2"><%= cart_item.quantity %></td>
             <td class="p-2"><%= cart_item.subtotal %></td>
+          </tr>
           <% @total += cart_item.subtotal %>
           <% end %>
         </tbody>

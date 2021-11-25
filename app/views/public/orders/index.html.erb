@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row-md-12 mt-5">
-    <h2 class="ml-5 col-md-3 text-center d-inline" style="background-color:rgba(205, 197, 197, 0.53);">注文履歴一覧</h2>
+    <h3 class="ml-5 col-md-3 text-center d-inline" style="background-color:rgba(205, 197, 197, 0.53);">注文履歴一覧</h3>
     <table class="mt-5" border=1 >
       <thead>
         <tr class="active" style="background-color:rgba(107,90,105,0.1);">
@@ -33,5 +33,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @orders %>
   </div>
 </div>

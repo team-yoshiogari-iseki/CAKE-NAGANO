@@ -3,9 +3,9 @@
     <div class="container">
 
       <% if admin_signed_in? %>
-        <a class="navbar-brand" href="/admin"><span class="font-italic"><%= image_tag 'NAGANO-CAKE1.png', class: "img-fluid" %></span></a>
+        <a class="navbar-brand" href="/admin"><span class="font-italic"><%= image_tag 'nagano.png', class: "img-fluid" %></span></a>
       <% else %>
-        <a class="navbar-brand" href="/"><span><%= image_tag 'NAGANO-CAKE1.png', class: "img-fluid" %></span></a>
+        <a class="navbar-brand" href="/"><span><%= image_tag 'nagano.png', class: "img-fluid" %></span></a>
       <% end %>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
-            <p class="mr-5">ようこそ、 <%= current_customer.last_name %> さん！</p>
+            <p class="mr-5 text-white">ようこそ、 <%= current_customer.last_name %> さん！</p>
               <li>
                 <%= link_to 'マイページ', customers_path(current_customer.id), class: "mx-3 text-white" %>
               </li>
