@@ -38,6 +38,13 @@ gemfile
 ___
 
 ### 設計書
+* [ER図](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/ER%E5%9B%B3.png)
+* [テーブル定義書一覧](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%AE%9A%E7%BE%A9%E6%9B%B8_%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E9%81%BA%E8%B7%A1%20-%20%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E4%B8%80%E8%A6%A7.jpg)
+* [テーブル定義書詳細](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E5%AE%9A%E7%BE%A9%E6%9B%B8_%E5%90%89%E9%87%8E%E3%83%B6%E9%87%8C%E9%81%BA%E8%B7%A1%20.jpg)
+* [アプリケーション詳細設計　会員側](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E8%A9%B3%E7%B4%B0%E8%A8%AD%E8%A8%881.png)
+* [アプリケーション詳細設計　管理者側](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E8%A9%B3%E7%B4%B0%E8%A8%AD%E8%A8%882.png)
+* [UI Flows 会員側](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/%E4%BC%9A%E5%93%A1%E5%81%B4UI_Flows.png)
+* [UI Flows 管理者側](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/document_image/app/assets/document_image/%E7%AE%A1%E7%90%86%E8%80%85%E5%81%B4UI_Flows.png)
 
 ___
 
