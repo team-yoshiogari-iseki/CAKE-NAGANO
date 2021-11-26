@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'homes#top'
-  get 'home/about' => 'homes#about'
-
-  devise_for :publics,skip: [:passwords], controllers: {
+  devise_for :customer,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
@@ -14,21 +11,38 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root to: 'homes#top'
     resources :items, except: [:destroy]
-    resources :users, except: [:new, :create, :destroy]
-    resources :orders, only: [:index, :show, :update]
+    resources :customers, except: [:new, :create, :destroy]
+    resources :orders, only: [:show, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :order_details, only: [:update]
   end
 
-  namespace :public do
-    resources :address, except: [:new, :show]
-    resources :carts, except: [:new, :show, :edit]
+   scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
+    resources :addresses, except: [:new, :show]
+    resources :cart_items, except: [:new, :show, :edit] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     resources :items, only: [:index, :show]
-    resources :orders, except: [:edit, :update, :destroy]
-    get 'orders/check' => 'orders#check'
+    post 'orders/check' => 'orders#check'
+    get 'orders/check_view' => 'orders#check_view'
     get 'orders/success' => 'orders/success'
-    resources :users, only: [:show, :edit, :update]
-    get 'users/erasure' => 'users#erasure'
-    delete 'users/:id' => 'users#leave'
-  end
+    resources :orders, except: [:edit, :update, :destroy]
+    patch 'customers/'=> 'customers#update'
+    resources :customers, only: [] do
+    collection do
+      get :show
+      get :edit
+      patch :leave
+      get :erasure
+    end
+    end
 
-  end
+   end
+
+end
