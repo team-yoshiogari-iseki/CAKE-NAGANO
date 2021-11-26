@@ -1,6 +1,7 @@
 # NAGANO-CAKE
 ___
-[](/images/CAKE-NAGANO_LOGO.png)
+![CAKE-NAGANO_LOGO](https://user-images.githubusercontent.com/90122174/143534402-d1f4bfa6-62e3-4500-bd7e-1213467e74bb.png)
+___
 
 ### 概要
 長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト開発。
