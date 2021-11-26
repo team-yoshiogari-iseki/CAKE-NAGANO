@@ -34,7 +34,7 @@ ___
 ___
 
 ### 実装した機能
-gemfile
+* [Gemfile](https://github.com/team-yoshiogari-iseki/CAKE-NAGANO/blob/develop/Gemfile)
 ___
 
 ### 設計書
