@@ -4,6 +4,7 @@ class Public::ItemsController < ApplicationController
     @items = Item.all.page(params[:page]).reverse_order.per(8)
     @item = Item.all
     @genres = Genre.all
+    
   end
 
   def show
@@ -11,4 +12,6 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
     @genres = Genre.all
   end
+  
+  
 end
