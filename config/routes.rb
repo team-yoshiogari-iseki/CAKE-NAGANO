@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       patch :leave
       get :erasure
     end
+    get '/search', to: 'searchs#search'
     end
 
    end
